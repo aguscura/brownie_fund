@@ -1,0 +1,30 @@
+# <organization/repo>@<version> - we tell brownie that we need these contracts from chainlink github.
+# we are telling brownie each time we have '@chainlink' we need to replace it with the dependencie above.
+
+#IMPORTANT --> THE BROWNIE-CONFIG.YAML FILE HAS TO BE INSIDE THE PROJECT FOLDER!
+
+dependencies:
+  - smartcontractkit/chainlink-brownie-contracts@1.1.1
+
+compiler:
+  solc:
+    remappings:
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@1.1.1'
+
+dotenv: .env
+
+networks:
+  default: development
+  rinkeby:
+    eth_usd_price_feed: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e"
+    verify: True
+  mainnet-fork:
+    eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+    verify: False
+  development:
+    verify: False
+  ganache-local:
+    verify: False
+
+wallets:
+  from_key: ${PRIVATE_KEY}
